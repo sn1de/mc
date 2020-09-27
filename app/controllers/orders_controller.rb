@@ -19,6 +19,8 @@ class OrdersController < ApplicationController
 
     if @order.save
       redirect_to @order, notice: "Order was created successfully"
+    else
+      render :new
     end
 
   end

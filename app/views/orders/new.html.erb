@@ -2,6 +2,14 @@
   <%= form_for(@order, html: { class: 'flex-grow-1 w-max-500-px p-4 m-0' }) do |form| %>
     <h2 class='pb-4'>Your Order Details</h2>
 
+	<% if @order.errors.any? %>
+		<ul>
+			<% @order.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
     <%= render 'product', product: @order.product %>
     <%= render 'errors', errors: errors if local_assigns.has_key?(:errors) %>
     <%= render 'fields', form: form %>
