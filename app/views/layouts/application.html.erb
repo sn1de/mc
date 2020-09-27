@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orderplex</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <div class='bg-success text-white font-weight-bold text-center p-3'>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div class='bg-danger text-white font-weight-bold text-center p-3'>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

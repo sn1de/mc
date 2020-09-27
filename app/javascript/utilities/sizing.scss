@@ -1,0 +1,44 @@
+@import "bootstrap";
+
+.h-40-px {
+  height: 40px;
+}
+
+.h-100-px {
+  height: 100px;
+}
+
+.h-200-px {
+  height: 200px;
+}
+
+.h-300-px {
+  height: 300px;
+}
+
+.w-max-500-px {
+  max-width: 500px;
+}
+
+.w-min-100-px {
+  max-width: 500px;
+}
+
+.w-min-16-em {
+  min-width: 16em;
+}
+
+.w-min-2-em {
+  min-width: 2em;
+}
+
+.w-min-3-em {
+  min-width: 2em;
+}
+
+@include media-breakpoint-up(sm) {
+  .h-sm-200-px {
+    height: 200px;
+  }
+}
+

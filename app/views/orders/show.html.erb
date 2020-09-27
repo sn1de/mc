@@ -1,0 +1,18 @@
+<% if notice %>
+	<p id="notice"><%= notice %></p>
+<% end %>
+<h1>Order Detail</h1>
+<table>
+	<tbody>
+		<tr><td>ID</td><td><%= @order.id %></td></tr>
+		<tr><td>Customer</td><td><%= @order.customer_name %></td></tr>
+		<tr><td>Card Number</td><td><%= @order.card_number %></td></tr>
+		<tr><td>Exp Month</td><td><%= @order.card_exp_month %></td></tr>
+		<tr><td>Exp Year</td><td><%= @order.card_exp_year %></td></tr>
+		<tr><td>CVC</td><td><%= @order.card_cvc %></td></tr>
+		<tr><td>Product</td><td><%= @order.product_id %></td></tr>
+		<tr><td>Product Price</td><td><%= @order.product.price %></td></tr>
+		<tr><td>Quantity</td><td><%= @order.quantity %></td></tr>
+	</tbody>
+</table>
+<%= link_to  "Continue Shopping", products_path %>

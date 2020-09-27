@@ -1,0 +1,12 @@
+<%# TODO: Add code for product index page here %>
+<% @products.each do |prod| %>
+	<ul>
+		<li><img src="<%= url_for(prod.photo) %>" alt="Product photo"></li>
+		<li><%= prod.name %></li>
+		<li><%= prod.description %></li>
+		<li><%= prod.price %></li>
+		<li><%= prod.quantity %></li>
+		<li><%= link_to "Buy Now", new_order_path(product_id: prod) %></li>
+
+	</ul>
+<% end %>

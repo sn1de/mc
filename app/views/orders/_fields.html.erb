@@ -1,0 +1,31 @@
+<%= form.hidden_field :product_id %>
+
+<div class='form-group'>
+  <%= form.label :customer_name, 'Full Name' %>
+  <%= form.text_field :customer_name, class: 'form-control rounded-0' %>
+</div>
+
+<div class='form-group'>
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity, min: 0, step: 1, class: 'form-control rounded-0' %>
+</div>
+
+<div class='d-flex flex-wrap'>
+  <div class='form-group mr-2 flex-grow-1 flex-shink-0'>
+    <%= form.label :card_number, 'Card Number' %>
+    <%= form.text_field :card_number, class: 'form-control rounded-0 w-min-16-em', maxlength: 16 %>
+  </div>
+
+  <div class='form-group mr-2 flex-grow-1'>
+    <%= form.label :card_exp_month, 'Exp Date' %>
+    <div class='d-flex'>
+    <%= form.text_field :card_exp_month, class: 'form-control rounded-0 w-min-2-em', maxlength: 2 %>
+    <%= form.text_field :card_exp_year, class: 'form-control rounded-0 border-left-0 w-min-2-em', maxlength: 2 %>
+    </div>
+  </div>
+
+  <div class='form-group pl-0 flex-grow-1'>
+    <%= form.label :card_cvc, 'CVC' %>
+    <%= form.text_field :card_cvc, class: 'form-control rounded-0 w-min-3-em', maxlength: 3 %>
+  </div>
+</div>

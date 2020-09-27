@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Nexa Rust Slab";
+  src: url('../fonts/nexa-rust-slab.woff2') format('woff2');
+}
+
+.display-1, .display-2, .display-3, .display-4 {
+  font-family: "Nexa Rust Slab";
+}
+
+$display1-size: 2.0rem;
+$display2-size: 1.5rem;
+$display3-size: 1.0rem;
+$display4-size: 0.5rem;
