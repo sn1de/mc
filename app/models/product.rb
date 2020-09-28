@@ -23,4 +23,11 @@ class Product < ApplicationRecord
   validates :photo, presence: true
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than: 0 }
+
+  # use to determine if sufficient inventory is available to be
+  # reserved in preparation for order generation
+  def reserve_inventory!(order_quantity)
+    self.quantity -= order_quantity
+    save!
+  end
 end
