@@ -1,1 +1,21 @@
 /* TODO: Add SCSS here for products index page */
+
+.mce-header {
+	text-align: center;
+}
+
+.catalog-header h1 {
+	font-size: 1.5rem;
+	text-align: center;
+	background: map-get($theme-colors, "light");
+}
+
+.product {
+	background: map-get($theme-colors, "light")
+}
+
+div.product-btn {
+	a {
+		color: $btn-primary-color;
+	}
+}
