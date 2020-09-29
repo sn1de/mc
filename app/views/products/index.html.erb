@@ -1,12 +1,34 @@
 <%# TODO: Add code for product index page here %>
-<% @products.each do |prod| %>
-	<ul>
-		<li><img src="<%= url_for(prod.photo) %>" alt="Product photo"></li>
-		<li><%= prod.name %></li>
-		<li><%= prod.description %></li>
-		<li><%= prod.price %></li>
-		<li><%= prod.quantity %></li>
-		<li><%= link_to "Buy Now", new_order_path(product_id: prod) %></li>
+<div class="container catalog-header display-4">
+	<h1>The World&apos;s Best Gifts for Men</h1>
+</div>
+<div class="container catalog">
+	<div class="row">
+		<% @products.each do |prod| %>
 
-	</ul>
-<% end %>
+			<div class="product col-md-6 px-0 px-md-2">
+				<img class="img-fluid" src="<%= url_for(prod.photo) %>" alt="Product photo">
+				<h2><%= prod.name %></h2>
+				<p>
+					<%= prod.price %>
+					<%= prod.quantity %>
+				</p>
+				<hr>
+				<p><%= prod.description %></p>
+				<div class="btn btn-primary product-btn">
+					<%= link_to "Buy This Product", new_order_path(product_id: prod) %>
+				</div>
+<!--
+				<ul>
+					<li><img src="<%= url_for(prod.photo) %>" alt="Product photo"></li>
+					<li><%= prod.name %></li>
+					<li><%= prod.description %></li>
+					<li><%= prod.price %></li>
+					<li><%= prod.quantity %></li>
+					<li><%= link_to "Buy This Product", new_order_path(product_id: prod) %></li>
+				</ul>
+-->
+			</div>
+		<% end %>
+	</div>
+</div>

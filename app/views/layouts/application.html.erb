@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <div class="container-fluid mce-header">
+      <%= image_tag asset_path("logo.png") %>
+    </div>
     <% if flash[:notice] %>
       <div class='bg-success text-white font-weight-bold text-center p-3'>
         <%= flash[:notice] %>
