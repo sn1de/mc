@@ -40,8 +40,40 @@ RSpec.describe Order, type: :model do
         card_cvc: order.card_cvc)
 
     prod.reload
-
+    expect(confirmed_order).not_to be nil
     expect(prod.quantity).to equal(original_quantity - order_quantity)
+  end
+
+  it "should not decrement product quantity if the order fails to save" do
+    prod = Product.find_by!(name: 'Coffee Percolator Crate')
+    original_quantity = prod.quantity
+    order_quantity = 2
+
+    # create an order that will not save due to the cc number being too long
+    order = Order.new(
+      customer_name: "Tom Failure",
+      card_number: "1111222233334444x",
+      card_exp_month: "12",
+      card_exp_year: "22",
+      card_cvc: "321",
+      quantity: order_quantity,
+      product: prod)
+
+    conf_svc = OrderConfirmationService.new
+
+    confirmed_order = conf_svc.perform(
+        product_id: order.product_id,
+        quantity: order.quantity,
+        customer_name: order.customer_name,
+        card_number: order.card_number,
+        card_exp_month: order.card_exp_month,
+        card_exp_year: order.card_exp_year,
+        card_cvc: order.card_cvc)
+
+    prod.reload
+    expect(confirmed_order).to be nil
+    expect(prod.quantity).to equal(original_quantity)
+
   end
 
   # TODO: many of these could probably be replaced by simpler versions 
