@@ -75,6 +75,56 @@ RSpec.describe Order, type: :model do
     expect(prod.quantity).to equal(original_quantity)
   end
 
+  it "should not be vulnerable to sqlite busy transaction failure" do
+    puts "Starting transaction concurrency test."
+    begin
+      expect(ActiveRecord::Base.connection.pool.size).to be > 2
+      transaction_paths = []
+
+      # This is the first transaction, it will be the first to open
+      # a transaction, but will then delay the start of sql 
+      # processing to allow the second transaction to perform
+      # to completion.
+      transaction_paths[0] = Thread.new do
+        Product.transaction do
+          puts "Starting first transaction path ..."
+          sleep(10)
+          puts "Executing product lock on first thread"
+          p1 = Product.lock(true).find_by!(name: 'Exotic Meats Crate')
+          puts "First thread product quantity #{ p1.quantity }"
+          puts "Reserving inventory on first thread"
+          p1.reserve_inventory!(2)
+          p1.reload
+          puts "New product quantity on first thread #{ p1.quantity }"
+        end
+      end
+
+      # This is the second transaction thread. We will delay
+      # the creation of the transaction to insure that the 
+      # first thread has an open transaction in progress, then 
+      # it will immediately proceed with the transaction activity
+      # which should negate the first thread's transaction.
+      transaction_paths[1] = Thread.new do
+        sleep(2)
+        puts "Starting second transaction path ..."
+        Product.transaction do
+          puts "Executing product lock on second thread"
+          p2 = Product.lock(true).find_by!(name: 'Exotic Meats Crate')
+          puts "Second thread product quantity #{ p2.quantity }"
+          puts "Reserving inventory on second thread"
+          p2.reserve_inventory!(3)
+          p2.reload
+          puts "New product quantity on second thread #{ p2.quantity }"
+        end
+      end
+
+      transaction_paths.each(&:join)
+      puts "Transaction path threads are complete."
+    ensure
+      ActiveRecord::Base.connection_pool.disconnect!
+    end
+  end
+
   # TODO: many of these could probably be replaced by simpler versions 
   # by using shoulda-matcher
   
