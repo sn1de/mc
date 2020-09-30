@@ -35,7 +35,9 @@
 
 .product-description {
 	color: map-get($theme-colors, "descriptions");
+@include media-breakpoint-up(sm) {
 	min-height: 200px;
+}
 }
 
 .product-price {

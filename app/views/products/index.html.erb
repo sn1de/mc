@@ -15,8 +15,8 @@
 						<p class="product-price mb-0">&dollar;<%= prod.price %></p>
 						<p class="product-quantity rounded mb-0"><%= prod.quantity %> in stock</p>
 					</div>
-					<div class="product-description p-3">
-						<p><%= prod.description %></p>
+					<div class="product-description p-3 mb-0">
+						<%= prod.description %>
 					</div>
 					<div class="btn btn-primary product-btn d-flex justify-content-center rounded-0 border-0 m-3 m-md-0">
 						<%= link_to "Buy This Product", new_order_path(product_id: prod) %>
