@@ -15,6 +15,35 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
 
+  it "should decrement product quantity when an order is placed" do
+    prod = Product.find_by!(name: 'Elk Ridge Survival Axe')
+    original_quantity = prod.quantity
+    order_quantity = 2
+    order = Order.new(
+      customer_name: "Tom Tester",
+      card_number: "1111222233334444",
+      card_exp_month: "12",
+      card_exp_year: "22",
+      card_cvc: "321",
+      quantity: order_quantity,
+      product: prod)
+
+    conf_svc = OrderConfirmationService.new
+
+    confirmed_order = conf_svc.perform(
+        product_id: order.product_id,
+        quantity: order.quantity,
+        customer_name: order.customer_name,
+        card_number: order.card_number,
+        card_exp_month: order.card_exp_month,
+        card_exp_year: order.card_exp_year,
+        card_cvc: order.card_cvc)
+
+    prod.reload
+
+    expect(prod.quantity).to equal(original_quantity - order_quantity)
+  end
+
   # TODO: many of these could probably be replaced by simpler versions 
   # by using shoulda-matcher
   
