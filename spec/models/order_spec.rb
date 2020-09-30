@@ -73,7 +73,6 @@ RSpec.describe Order, type: :model do
     prod.reload
     expect(confirmed_order).to be nil
     expect(prod.quantity).to equal(original_quantity)
-
   end
 
   # TODO: many of these could probably be replaced by simpler versions 
