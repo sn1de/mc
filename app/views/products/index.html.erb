@@ -1,33 +1,23 @@
 <%# TODO: Add code for product index page here %>
-<div class="container-fluid catalog-header display-4 h-100-px text-center">
+<div class="d-flex catalog-header display-2 h-100-px text-center">
 	<h1>The&nbsp;World&apos;s&nbsp;Best Gifts for&nbsp;Men</h1>
 </div>
 <div class="container catalog">
 	<div class="row">
 		<% @products.each do |prod| %>
-
-			<div class="product col-md-6 px-0 px-md-2">
-				<img class="img-fluid" src="<%= url_for(prod.photo) %>" alt="Product photo">
-				<h2><%= prod.name %></h2>
-				<p>
-					<%= prod.price %>
-					<%= prod.quantity %>
-				</p>
-				<hr>
-				<p><%= prod.description %></p>
-				<div class="btn btn-primary product-btn">
-					<%= link_to "Buy This Product", new_order_path(product_id: prod) %>
+			<div class="col-md-6 px-0 px-md-2">
+				<div class="product">
+					<img class="img-fluid" src="<%= url_for(prod.photo) %>" alt="Product photo">
+					<h2><%= prod.name %></h2>
+					<div class="clearfix border-bottom">
+						<p class="float-left">&dollar;<%= prod.price %></p>
+						<p class="float-right"><%= prod.quantity %></p>
+					</div>
+					<p><%= prod.description %></p>
+					<div class="btn btn-primary product-btn">
+						<%= link_to "Buy This Product", new_order_path(product_id: prod) %>
+					</div>
 				</div>
-<!--
-				<ul>
-					<li><img src="<%= url_for(prod.photo) %>" alt="Product photo"></li>
-					<li><%= prod.name %></li>
-					<li><%= prod.description %></li>
-					<li><%= prod.price %></li>
-					<li><%= prod.quantity %></li>
-					<li><%= link_to "Buy This Product", new_order_path(product_id: prod) %></li>
-				</ul>
--->
 			</div>
 		<% end %>
 	</div>

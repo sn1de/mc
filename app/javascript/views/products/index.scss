@@ -1,6 +1,9 @@
 /* TODO: Add SCSS here for products index page */
 
 .mce-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: auto;
 	background: map-get($theme-colors, "dark");
 	img {
@@ -15,7 +18,7 @@
 	width: auto;
 	background: map-get($theme-colors, "light");
 	h1 {
-		font-size: $display1-size;
+		font-size: $display2-size;
 	}
 }
 
