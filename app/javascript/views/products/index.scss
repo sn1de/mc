@@ -16,6 +16,7 @@
 	align-items: center;
 	justify-content: center;
 	width: auto;
+	margin-top: 100px;
 	background: map-get($theme-colors, "light");
 	h1 {
 		font-size: $display2-size;
@@ -23,11 +24,29 @@
 }
 
 .product {
-	background: map-get($theme-colors, "light")
+	background: map-get($theme-colors, "light");
 }
 
+.product-description {
+	color: map-get($theme-colors, "descriptions");
+	min-height: 200px;
+}
+
+.product-price {
+	font-size: $display2-size;
+}
+
+.product-quantity {
+	color: white;
+	background-color: map-get($theme-colors, "stock");
+	padding: 1px 6px 1px 6px;
+}
+
+
 div.product-btn {
+	background-color: map-get($theme-colors, "primary");
 	a {
 		color: $btn-primary-color;
+		text-transform: uppercase;
 	}
 }
