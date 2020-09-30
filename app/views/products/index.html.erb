@@ -7,11 +7,13 @@
 		<% @products.each do |prod| %>
 			<div class="col-md-6 px-0 px-md-2">
 				<div class="product mb-2 pb-1 pb-md-0">
-					<img class="img-fluid" src="<%= url_for(prod.photo) %>" alt="Product photo">
-					<h2><%= prod.name %></h2>
-					<div class="clearfix border-bottom pr-3 pl-3 pt-1 pb-1">
-						<p class="product-price float-left">&dollar;<%= prod.price %></p>
-						<p class="product-quantity float-right rounded"><%= prod.quantity %> in stock</p>
+					<div class="position-relative">
+						<img class="img-fluid" src="<%= url_for(prod.photo) %>" alt="Product photo">
+						<div class="product-name position-absolute bottom-0 left-0 z-index-1 bg-black w-100 pt-2 pb-2 pl-3"><%= prod.name %></div>
+					</div>
+					<div class="d-flex justify-content-between align-items-center border-bottom pr-3 pl-3 pt-1 pb-1">
+						<p class="product-price mb-0">&dollar;<%= prod.price %></p>
+						<p class="product-quantity rounded mb-0"><%= prod.quantity %> in stock</p>
 					</div>
 					<div class="product-description p-3">
 						<p><%= prod.description %></p>
